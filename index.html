@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header class="p-2 mb-5 row-md bg-secondary text-center text-white">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <!-- SEARCH CITIES -->
+    <main class="row min-vh-100 no-gutters ">
+        <section class="col-12 col-lg-3 bg-success text-light d-flex flex-column p-4 p-lg-3">
+            <h3>Search for a city</h3>
+            <form id="city-form">
+                <div class="form-row">
+                    <div class="col-auto">
+                        <input name="city" id="city" type="text" class="form-control" placeholder="City" autofocus="true">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2" class="btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">City</a>
+                <a href="#" class="list-group-item list-group-item-action">City</a>
+                <a href="#" class="list-group-item list-group-item-action">City</a>
+                <a href="#" class="list-group-item list-group-item-action">City</a>
+            </div>
+
+        </section>
+
+
+        <div class="col-12 col-lg-9">
+            <!-- TODAY'S WEATHER -->
+            <section class="pb-2 m-auto col-9 bg-danger">
+                <p id="currentDay" class="lead"></p>
+            </section>
+
+            <!-- 5 DAY FORECAST -->
+            <section class="col-9 m-auto bg-warning">
+                <h3>FORECAST</h3>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
