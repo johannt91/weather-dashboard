@@ -18,13 +18,13 @@
     </header>
 
     <!-- SEARCH CITIES -->
-    <main class="row min-vh-100 no-gutters ">
+    <main class="row min-vh-100 no-gutters">
         <section class="col-12 col-lg-3 bg-success text-light d-flex flex-column p-4 p-lg-3">
             <h3>Search for a city</h3>
             <form id="city-form">
                 <div class="form-row">
                     <div class="col-auto">
-                        <input name="city" id="city" type="text" class="form-control" placeholder="City" autofocus="true">
+                        <input name="city" id="city" type="text" class="form-control" placeholder="City" autofocus="true" />
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-2" class="btn">
@@ -46,13 +46,21 @@
 
         <div class="col-12 col-lg-9">
             <!-- TODAY'S WEATHER -->
-            <section class="pb-2 m-auto col-9 bg-danger">
+            <section class="pb-2 m-auto col-9 bg-light border">
                 <p id="currentDay" class="lead"></p>
+                <div class="weather-container">
+                    <h3 class="city-name"><span id="city-name"></span><img id="weather-icon" /></h3>
+                    <p id="temp"></p>
+                    <p id="humidity"></p>
+                    <p id="wind-speed"></p>
+                    <p id="uv-index"></p>
+                </div>
             </section>
 
             <!-- 5 DAY FORECAST -->
             <section class="col-9 m-auto bg-warning">
-                <h3>FORECAST</h3>
+                <h3 id="forecast"></h3>
+
             </section>
         </div>
     </main>
