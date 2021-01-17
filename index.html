@@ -24,7 +24,8 @@
             <form id="city-form">
                 <div class="form-row">
                     <div class="col-auto">
-                        <input name="city" id="city" type="text" class="form-control" placeholder="City" autofocus="true" />
+                        <input name="city" id="city" type="text" class="form-control" placeholder="City"
+                            autofocus="true" />
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-2" class="btn">
@@ -44,23 +45,28 @@
         </section>
 
 
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-9 bg-light">
             <!-- TODAY'S WEATHER -->
-            <section class="pb-2 m-auto col-9 bg-light border">
-                <p id="currentDay" class="lead"></p>
+            <section class="pb-2 m-auto col-10 bg-light border">
                 <div class="weather-container">
+                    <p id="currentDay" class="lead"></p>
                     <h3 class="city-name"><span id="city-name"></span><img id="weather-icon" /></h3>
                     <p id="temp"></p>
                     <p id="humidity"></p>
                     <p id="wind-speed"></p>
-                    <p id="uv-index"></p>
+                    <p id="uv-index" class="uv-index"></p>
                 </div>
             </section>
 
             <!-- 5 DAY FORECAST -->
-            <section class="col-9 m-auto bg-warning">
-                <h3 id="forecast"></h3>
-
+            <section class="pt-3 col-9 m-auto bg-light">
+                <h3 id="forecast-title"></h3>
+                <div id="forecast-container">
+                    <div class="card-deck" id="card-deck">
+                        <img id="daily-icon" />
+                        <!-- DISPLAY WEATHER FORECAST CARDS -->
+                    </div>
+                </div>
             </section>
         </div>
     </main>
