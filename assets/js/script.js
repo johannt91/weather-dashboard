@@ -16,13 +16,23 @@ var humidity = document.querySelector("#humidity");
 var windSpeed = document.querySelector("#wind-speed");
 var UVI = document.querySelector("#uv-index");
 
+//------------------ SEARCH HISTORY ----------------------
+var searchHistory = document.querySelector("#search-history");
 
+//------------------ SEARCH CITY AND STORE SEARCH ----------------------
 var searchCity = function (event) {
     event.preventDefault();
     var cityName = cityInputEl.value.trim();
     if (cityName) {
         getCityWeather(cityName);
         cityInputEl.value = "";
+        var searchedCity = JSON.parse(localStorage.getItem("CityList")) || [];
+
+        var storedCities = {City: cityName};
+        searchedCity.push(storedCities);
+
+        localStorage.setItem("CityList", JSON.stringify(searchedCity));
+        //call function to append city list
     } else {
         alert("Enter a city name");
     }
@@ -103,5 +113,7 @@ var displayWeather = function(data) {
     }
     
 };
+
+
 
 cityFormEl.addEventListener("submit", searchCity);
