@@ -16,7 +16,7 @@ var humidity = document.querySelector("#humidity");
 var windSpeed = document.querySelector("#wind-speed");
 var UVI = document.querySelector("#uv-index");
 
-//------------------ SEARCH HISTORY ----------------------
+//------------------ SEARCH HISTORY SECTION ----------------------
 var searchHistory = document.querySelector("#search-history");
 
 //------------------ SEARCH CITY AND STORE SEARCH ----------------------
@@ -28,11 +28,11 @@ var searchCity = function (event) {
         cityInputEl.value = "";
         var searchedCity = JSON.parse(localStorage.getItem("CityList")) || [];
 
-        var storedCities = {City: cityName};
+        var storedCities = {city: cityName};
         searchedCity.push(storedCities);
 
         localStorage.setItem("CityList", JSON.stringify(searchedCity));
-        //call function to append city list
+        createCityList();
     } else {
         alert("Enter a city name");
     }
@@ -114,6 +114,16 @@ var displayWeather = function(data) {
     
 };
 
-
+//Create search history list
+function createCityList() {
+    var searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
+    searchHistory.innerHTML="";
+     for (i = 0; i<searchedCities.length; i++){
+        var buttonEl = document.createElement("button");
+        buttonEl.textContent = searchedCities[i].city;
+        searchHistory.appendChild(buttonEl);
+    }
+}
+createCityList();
 
 cityFormEl.addEventListener("submit", searchCity);
