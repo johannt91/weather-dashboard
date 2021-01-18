@@ -11,6 +11,13 @@
 
 - Search history of cities
 
+## Uses
+
+- Javascript
+- HTML
+- OpenWeatherMap API
+- Bootstrap
+
 https://johannt91.github.io/weather-dashboard/
 
 ![](weather-dashboard.png)
