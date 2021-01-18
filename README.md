@@ -11,6 +11,8 @@
 
 - Search history of cities
 
+- Search history persists after browser closes or is refreshed
+
 ## Uses
 
 - Javascript
