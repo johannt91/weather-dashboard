@@ -11,6 +11,15 @@
 
 - Search history of cities
 
+- Search history persists after browser closes or is refreshed
+
+## Uses
+
+- Javascript
+- HTML
+- OpenWeatherMap API
+- Bootstrap
+
 https://johannt91.github.io/weather-dashboard/
 
 ![](weather-dashboard.png)
