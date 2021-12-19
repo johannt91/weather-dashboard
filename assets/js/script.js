@@ -129,29 +129,22 @@ var displayWeather = function(data) {
 function createCityList() {
     var searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
     searchHistory.innerHTML="";
-     for (i = 0; i<searchedCities.length; i++){
-        var buttonEl = document.createElement("button");
+     for (i = 1; i<searchedCities.length; i++){
+        var buttonEl = document.createElement("li");
         buttonEl.classList = "list-group-item list-group-item-action";
-        buttonEl.id = "searchedCity" + i;
+        buttonEl.setAttribute(`data-id`, i)
         buttonEl.textContent = searchedCities[i].city;
         searchHistory.appendChild(buttonEl);
     }
 }
 
-
-// Search old city
-function searchPreviousCity(searchedCities) {
-    var buttonElArr = [];
-    for (i = 0; i<searchedCities.length; i++) {
-        buttonElArr[i] = document.getElementById("searchedCity" + i);
-        console.log("BUTTON ARR", buttonElArr)
-    }
-    
-    buttonElArr.map((oldSearch) => {
-        oldSearch.addEventListener("click", function() {
-            getCityWeather(oldSearch.innerHTML);
-        })
-    });
+//------------------------- Search History -------------------------//
+var searchPreviousCity = function (event) {
+    var searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
+    var cityId = event.target.getAttribute("data-id");
+    var cityIndex = searchedCities[cityId].city
+    console.log(cityIndex)
+    getCityWeather(cityIndex)
 }
 
 
@@ -163,6 +156,9 @@ clearSearchHistory.addEventListener("click", function(event){
 
 createCityList();
 
+//------------------------- Click handlers -------------------------//
 cityFormEl.addEventListener("submit", searchCity);
+searchHistory.addEventListener("click", searchPreviousCity);
 
 currentWeatherDisplay.style.display = "none";
+
