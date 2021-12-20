@@ -2,3 +2,48 @@
     color: white;
     font-size: 1.15vw;
 }
+
+@media only screen and (min-width: 768px) {
+    .forecast-section {
+        margin: 2rem 3rem 2rem;
+        width: 90%!important;
+    }
+
+    .daily-date {
+        font-size: .8rem;
+    }
+
+    .forecast-cards {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 3vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .forecast-section {
+       margin: .5rem 1rem .5rem
+    }
+
+    .daily-date {
+        font-size: .5rem;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .forecast-cards {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2vw;
+        width: 100%;
+    }
+}
