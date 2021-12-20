@@ -2,12 +2,16 @@ var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city");
 
 var currentDate = document.querySelector("#currentDay");
-var forecastHeader = document.querySelector("#forecast-title")
+var forecastHeader = document.querySelector("#forecast-title");
+var forecastSection = document.querySelector("#forecast");
 var dailyForecast = document.querySelector("#daily");
 var cardDeck = document.querySelector("#card-deck");
 var currentWeatherDisplay = document.querySelector("#currentWeather-container");
 
 var fiveDayForecast = document.querySelector("#forecast-container");
+
+currentWeatherDisplay.style.display = "none";
+forecastHeader.style.display = "none";
 
 //------------------ WEATHER DETAILS ----------------------
 var city = document.querySelector("#city-name");
@@ -40,7 +44,8 @@ var searchCity = function (event) {
         alert("Enter a city name");
     }
     createCityList(searchedCity);
-}
+};
+
 //------------------ GET CITY AND WEATHER ----------------------
 var getCityWeather = function (cityName) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01';
@@ -65,11 +70,12 @@ var getCityWeather = function (cityName) {
     });
 };
 
-//------------------ DISPLAY WEATHER ----------------------
+//------------------ DISPLAY WEATHER ----------------------//
 var displayWeather = function(data) {
 
-    //------------------ CURRENT WEATHER ----------------------
+    //------------------ CURRENT WEATHER ----------------------//
     // console.log("display weather retrieving data from get city weather", data);
+    forecastHeader.style.display = "block";
     currentDate.textContent = new Date(data.current.dt * 1000).toLocaleDateString("en-US");
     weatherIcon.src = 'https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png';
     temperature.textContent = "Temperature: " + Math.floor((data.current.temp - 32) * 5 / 9) + "°C";
@@ -85,17 +91,16 @@ var displayWeather = function(data) {
     else if (currentUVI >=6 && currentUVI <= 7) {UVI.classList = "bg-warning"}
     else if (currentUVI >=8) {UVI.classList = "bg-danger text-white"};
 
-    //------------------ 5 DAY FORECAST ----------------------
-    forecastHeader.textContent = "5-Day Forecast:";
+    //------------------ 5 DAY FORECAST ----------------------//
     
-    //---CLEAR OLD CONTENT ---
+    //---CLEAR OLD CONTENT ---//
     cardDeck.textContent= "";
     
-    //---- LOOP THROUGH FIVE DAYS OF FORECASTS ----
+    //---- LOOP THROUGH FIVE DAYS OF FORECASTS ----//
     for (i=0; i < 5; i++) {
         
         // console.log("5 day forecast:", data.daily[i]);
-        var card = document.createElement("div")
+        var card = document.createElement("div");
         card.classList = "card bg-primary";
         var cardBody = document.createElement("div");
         cardBody.classList = "card-body";
@@ -132,33 +137,34 @@ function createCityList() {
      for (i = 1; i<searchedCities.length; i++){
         var buttonEl = document.createElement("li");
         buttonEl.classList = "list-group-item list-group-item-action";
-        buttonEl.setAttribute(`data-id`, i)
+        buttonEl.setAttribute(`data-id`, i);
         buttonEl.textContent = searchedCities[i].city;
         searchHistory.appendChild(buttonEl);
     }
-}
+};
 
-//------------------------- Search History -------------------------//
-var searchPreviousCity = function (event) {
+//------------------------- Render Search History -------------------------//
+var renderSearchHistory = function (event) {
     var searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
+    currentWeatherDisplay.style.display = "flex";
     var cityId = event.target.getAttribute("data-id");
-    var cityIndex = searchedCities[cityId].city
-    console.log(cityIndex)
-    getCityWeather(cityIndex)
-}
+    var cityIndex = searchedCities[cityId].city;
+    console.log(cityIndex);
+    getCityWeather(cityIndex);
+};
 
 
 //clear scearch history
 clearSearchHistory.addEventListener("click", function(event){
     localStorage.clear(event);
     searchHistory.textContent = "";
+    cardDeck.textContent= "";
+    currentWeatherDisplay.style.display = "none";
+    forecastHeader.style.display = "none";
 });
 
 createCityList();
 
 //------------------------- Click handlers -------------------------//
 cityFormEl.addEventListener("submit", searchCity);
-searchHistory.addEventListener("click", searchPreviousCity);
-
-currentWeatherDisplay.style.display = "none";
-
+searchHistory.addEventListener("click", renderSearchHistory);
