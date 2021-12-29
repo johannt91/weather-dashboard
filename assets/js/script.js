@@ -59,7 +59,8 @@ var getCityWeather = function (cityName) {
             city.textContent = data.city.name;
 
             fetch(
-                'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&exclude=minutely,hourly,alerts&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01')
+                `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=minutely,hourly,alerts&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01`
+                )
                 .then(function (response) {
                     response.json()
                         .then(function (data) {
@@ -74,7 +75,6 @@ var getCityWeather = function (cityName) {
 var displayWeather = function(data) {
 
     //------------------ CURRENT WEATHER ----------------------//
-    // console.log("display weather retrieving data from get city weather", data);
     forecastHeader.style.display = "block";
     currentDate.textContent = new Date(data.current.dt * 1000).toLocaleDateString("en-US");
     weatherIcon.src = 'https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png';
@@ -99,7 +99,6 @@ var displayWeather = function(data) {
     //---- LOOP THROUGH FIVE DAYS OF FORECASTS ----//
     for (i=0; i < 5; i++) {
         
-        // console.log("5 day forecast:", data.daily[i]);
         var card = document.createElement("div");
         card.classList = "card bg-primary";
         var cardBody = document.createElement("div");
