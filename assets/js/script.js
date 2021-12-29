@@ -46,6 +46,27 @@ var searchCity = function (event) {
     createCityList(searchedCity);
 };
 
+//------------------ GEOLOCATION ----------------------
+// var getCurrentLocation = function() {
+//     function success(position) {
+//         var latCoords = position.coords.latitude;
+//         var longCoords = position.coords.longitude;
+//         alert(`Lat: ${latCoords} Long: ${longCoords}`);
+//     }
+
+//     function error() {
+//         alert("Unable to find your location!");
+//     }
+
+//     if(!navigator.geolocation){
+//         alert('Geolocation is not supported by your browser');
+//     } else {
+//         navigator.geolocation.getCurrentPosition(success, error);
+//     }
+// }
+// console.log(getcurrentLocation)
+// getCurrentLocation();
+
 //------------------ GET CITY AND WEATHER ----------------------
 var getCityWeather = function (cityName) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01';
