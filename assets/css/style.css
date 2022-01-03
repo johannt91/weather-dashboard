@@ -31,8 +31,10 @@ body, .card {
 }
 
 .weather-display {
-    display: flex;
-    flex-direction: column;
+    display: flex!important;
+    flex-direction: column!important;
+    justify-content: center;
+    align-items: center;
 }
 
 .weather-container {
@@ -40,50 +42,76 @@ body, .card {
 }
 
 .forecast-section {
+    width: fit-content;
+}
+
+.forecast-section h3{
+    background: rgba(255, 255, 255, 0.185);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.1px);
+    -webkit-backdrop-filter: blur(1.1px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.card-body {
+    background: rgba(255, 255, 255, 0.185);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.1px);
+    -webkit-backdrop-filter: blur(1.1px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
+
 .forecast-cards {
     display: flex!important;
     flex-direction: row!important;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
-@media only screen and (min-width: 768px) {
-    .forecast-section {
-        margin: 3rem 3rem 2rem;
-        width: 90%!important;
+
+@media only screen and (max-width: 768px) {
+    main {
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     .daily-date {
-        font-size: .8rem;
+        font-size: .5rem;
+    }
+
+    .card-body {
+        height: 200px;
+        width: 100px;
+    }
+
+    .card-text {
+        font-size: 2.3vw;
     }
 
     .forecast-cards {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         flex-direction: row;
-        justify-content: space-between;
         gap: 3vw;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .forecast-section {
-       margin: 2rem 1rem .5rem
-    }
 
     .daily-date {
-        font-size: 2.5vw;
+        font-size: 2vw!important;
         font-weight: bold;
     }
     
-    .forecast-cards {
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 2vw;
-        width: 100%;
-    }
 
     .card-body {
         display: flex;

@@ -20,11 +20,10 @@
     <!-- SEARCH CITIES -->
     <main class="row min-vh-100 no-gutters">
         <section class="col-12 col-lg-3 text-light d-flex flex-column p-4 p-lg-3">
-            <h3>Search for a city</h3>
             <form id="city-form">
                 <div class="form-row">
                     <div class="col-auto">
-                        <input name="city" id="city" type="text" class="form-control" placeholder="City"
+                        <input name="city" id="city" type="text" class="form-control" placeholder="Search for a city"
                             autofocus="true" />
                     </div>
                     <div class="col-auto">
@@ -47,9 +46,9 @@
         </section>
 
 
-        <div class="col-12 col-lg-9">
+        <section class="col-12 col-lg-9">
             <!-- TODAY'S WEATHER -->
-            <section id="currentWeather-container" class="pb-2 m-auto col-10 weather-display">
+            <div id="currentWeather-container" class="pb-2 weather-display">
                 <div class="weather-container">
                     <p id="currentDay" class="currentDate"></p>
                     <h3 class="city-name"><span id="city-name"></span><img id="weather-icon" /></h3>
