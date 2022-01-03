@@ -19,7 +19,7 @@
 
     <!-- SEARCH CITIES -->
     <main class="row min-vh-100 no-gutters">
-        <section class="col-12 col-lg-3 bg-success text-light d-flex flex-column p-4 p-lg-3">
+        <section class="col-12 col-lg-3 text-light d-flex flex-column p-4 p-lg-3">
             <h3>Search for a city</h3>
             <form id="city-form">
                 <div class="form-row">
@@ -47,33 +47,31 @@
         </section>
 
 
-        <div class="col-12 col-lg-9 bg-light">
+        <div class="col-12 col-lg-9">
             <!-- TODAY'S WEATHER -->
-            <section id="currentWeather-container" class="pb-2 m-auto col-10 bg-light border">
+            <section id="currentWeather-container" class="pb-2 m-auto col-10 weather-display">
                 <div class="weather-container">
-                    <p id="currentDay" class="lead"></p>
+                    <p id="currentDay" class="currentDate"></p>
                     <h3 class="city-name"><span id="city-name"></span><img id="weather-icon" /></h3>
                     <p id="temp"></p>
                     <p id="humidity"></p>
                     <p id="wind-speed"></p>
                     <div>
                         <span id="uv-index"></span>
-                    </div>
-                    
+                    </div>    
                 </div>
-            </section>
-
-            <!-- 5 DAY FORECAST -->
-            <section id="forecast" class="forecast-section bg-light">
-                <h3 id="forecast-title">5-Day Forecast</h3>
-                <div id="forecast-container" class="fiveday-forecast">
-                    <div class="forecast-cards" id="card-deck">
-                        <img id="daily-icon" />
-                        <!-- DISPLAY WEATHER FORECAST CARDS -->
+                <!-- 5 DAY FORECAST -->
+                <div id="forecast" class="forecast-section">
+                    <h3 id="forecast-title">5-Day Forecast</h3>
+                    <div id="forecast-container" class="fiveday-forecast">
+                        <div class="forecast-cards" id="card-deck">
+                            <img id="daily-icon" />
+                            <!-- DISPLAY WEATHER FORECAST CARDS -->
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

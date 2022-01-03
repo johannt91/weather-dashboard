@@ -1,10 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #8fb4b4;
+}
+
+body, .card {
+    background-color: var(--primary-color);
+}
+
+.currentDate {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+}
+
 .daily-weather-text {
     color: white;
     font-size: 1.15vw;
 }
 
+.daily-date {
+    font-size: 1rem!important;
+}
+
+.weather-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-container {
+    text-align: center;
+}
+
 .forecast-section {
     text-align: center;
+}
+.forecast-cards {
+    display: flex!important;
+    flex-direction: row!important;
 }
 
 @media only screen and (min-width: 768px) {
