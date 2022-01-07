@@ -13,6 +13,13 @@ const fiveDayForecast = document.querySelector("#forecast-container");
 currentWeatherDisplay.style.display = "none";
 forecastHeader.style.display = "none";
 
+
+//------------------ SPEECH VARIABLES ----------------------
+const speechOutput = document.querySelector("#speech");
+const talk = document.querySelector("#talk");
+const background = document.querySelector("body");
+
+
 //------------------ WEATHER DETAILS ----------------------
 const city = document.querySelector("#city-name");
 const weatherIcon = document.querySelector("#weather-icon");
@@ -36,7 +43,9 @@ const searchCity = (event) => {
         getCityWeather(cityName);
         cityInputEl.value = "";
         var searchedCity = JSON.parse(localStorage.getItem("CityList")) || [cityName];
-        var storedCities = { city: cityName };
+        var storedCities = {
+            city: cityName
+        };
         searchedCity.push(storedCities);
 
         localStorage.setItem("CityList", JSON.stringify(searchedCity));
@@ -45,6 +54,39 @@ const searchCity = (event) => {
     }
     createCityList(searchedCity);
 };
+
+//------------------ SEARCH CITY VIA WEB SPEECH ----------------------
+if ("webkitSpeechRecognition" in window) {
+    const speechRecognition = new webkitSpeechRecognition();
+    speechRecognition.continuous = false;
+    speechRecognition.interimResults = false;
+    speechRecognition.lang = "en-US";
+
+    speechRecognition.onstart = function () {
+        console.log("Speech recognition active");
+    };
+
+    speechRecognition.onresult = function (event) {
+        const current = event.resultIndex;
+        const transcript = event.results[current][0].transcript.toLowerCase().replace(
+            /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
+            ""
+        );
+        cityInputEl.value = transcript;
+        setTimeout(() => {
+            searchCity(event);
+        }, 1000);
+    };
+
+    speechRecognition.onerror = function (event) {
+        console.log(event.error);
+    };
+
+    talk.addEventListener("click", () => speechRecognition.start());
+} else {
+    alert(`Speech recognition unavailable :(`);
+}
+
 
 
 //------------------ GET CITY AND WEATHER ----------------------
@@ -60,8 +102,8 @@ const getCityWeather = (cityName) => {
             city.textContent = data.city.name;
 
             fetch(
-                `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=minutely,hourly,alerts&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01`
-            )
+                    `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=minutely,hourly,alerts&appid=f7e68c78a6c0589ffc5c75fdd1fe6b01`
+                )
                 .then(function (response) {
                     response.json()
                         .then(function (data) {
@@ -75,7 +117,12 @@ const getCityWeather = (cityName) => {
 //------------------ DISPLAY WEATHER ----------------------//
 const displayWeather = (data) => {
 
-    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    let options = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    };
 
     //------------------ CURRENT WEATHER ----------------------//
     forecastHeader.style.display = "block";
@@ -89,16 +136,21 @@ const displayWeather = (data) => {
 
 
 
-    if (currentUVI >= 0 && currentUVI <= 2) { UVI.classList = "bg-success text-white"; }
-    else if (currentUVI >= 3 && currentUVI <= 5) { UVI.classList = "bg-warning"; }
-    else if (currentUVI >= 6 && currentUVI <= 7) { UVI.classList = "bg-warning"; }
-    else if (currentUVI >= 8) { UVI.classList = "bg-danger text-white"; };
+    if (currentUVI >= 0 && currentUVI <= 2) {
+        UVI.classList = "bg-success text-white";
+    } else if (currentUVI >= 3 && currentUVI <= 5) {
+        UVI.classList = "bg-warning";
+    } else if (currentUVI >= 6 && currentUVI <= 7) {
+        UVI.classList = "bg-warning";
+    } else if (currentUVI >= 8) {
+        UVI.classList = "bg-danger text-white";
+    };
 
     //------------------ 5 DAY FORECAST ----------------------//
     //---CLEAR OLD CONTENT ---//
     cardDeck.textContent = "";
 
-    
+
     //---- LOOP THROUGH FIVE DAYS OF FORECASTS ----//
     for (i = 1; i < 6; i++) {
 
@@ -135,8 +187,8 @@ const displayWeather = (data) => {
 //Create search history list
 function createCityList() {
     var searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
-    searchHistory.innerHTML="";
-     for (i = 1; i<searchedCities.length; i++){
+    searchHistory.innerHTML = "";
+    for (i = 1; i < searchedCities.length; i++) {
         var buttonEl = document.createElement("li");
         buttonEl.classList = "list-group-item list-group-item-action";
         buttonEl.setAttribute(`data-id`, i);
@@ -157,10 +209,10 @@ const renderSearchHistory = (event) => {
 
 
 //clear scearch history
-clearSearchHistory.addEventListener("click", function(event){
+clearSearchHistory.addEventListener("click", function (event) {
     localStorage.clear(event);
     searchHistory.textContent = "";
-    cardDeck.textContent= "";
+    cardDeck.textContent = "";
     currentWeatherDisplay.style.display = "none";
     forecastHeader.style.display = "none";
 });
