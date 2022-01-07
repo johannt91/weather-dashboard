@@ -76,7 +76,7 @@ if ("webkitSpeechRecognition" in window) {
         cityInputEl.value = transcript;
         setTimeout(() => {
             searchCity(event);
-        }, 1000);
+        }, 500);
     };
 
     speechRecognition.onerror = function (event) {
