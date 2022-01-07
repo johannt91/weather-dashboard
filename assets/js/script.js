@@ -6,11 +6,12 @@ const forecastHeader = document.querySelector("#forecast-title");
 const forecastSection = document.querySelector("#forecast");
 const dailyForecast = document.querySelector("#daily");
 const cardDeck = document.querySelector("#card-deck");
-const currentWeatherDisplay = document.querySelector("#currentWeather-container");
+const currentWeatherContainer = document.querySelector("#currentWeather-container");
+const currentWeatherDisplay = document.querySelector("#current-weather");
 
 const fiveDayForecast = document.querySelector("#forecast-container");
 
-currentWeatherDisplay.style.display = "none";
+currentWeatherContainer.style.display = "none";
 forecastHeader.style.display = "none";
 
 
@@ -37,7 +38,7 @@ const clearSearchHistory = document.querySelector("#clear-history");
 //------------------ SEARCH CITY AND STORE SEARCH ----------------------
 const searchCity = (event) => {
     event.preventDefault();
-    currentWeatherDisplay.style.display = "flex";
+    currentWeatherContainer.style.display = "flex";
     var cityName = cityInputEl.value.trim();
     if (cityName) {
         getCityWeather(cityName);
@@ -126,6 +127,7 @@ const displayWeather = (data) => {
 
     //------------------ CURRENT WEATHER ----------------------//
     forecastHeader.style.display = "block";
+    currentWeatherDisplay.style.display = "block";
     currentDate.textContent = new Date(data.current.dt * 1000).toLocaleDateString("en-US", options);
     weatherIcon.src = 'https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png';
     temperature.textContent = "Temperature: " + Math.floor((data.current.temp - 32) * 5 / 9) + "°C";
@@ -200,7 +202,7 @@ function createCityList() {
 //------------------------- Render Search History -------------------------//
 const renderSearchHistory = (event) => {
     let searchedCities = JSON.parse(localStorage.getItem("CityList")) || [];
-    currentWeatherDisplay.style.display = "flex";
+    currentWeatherContainer.style.display = "flex";
     let cityId = event.target.getAttribute("data-id");
     let cityIndex = searchedCities[cityId].city;
     console.log(cityIndex);
@@ -213,7 +215,8 @@ clearSearchHistory.addEventListener("click", function (event) {
     localStorage.clear(event);
     searchHistory.textContent = "";
     cardDeck.textContent = "";
-    currentWeatherDisplay.style.display = "none";
+    currentWeatherContainer.style.display = "none";
+    currentWeatherDisplay.style.display ="none";
     forecastHeader.style.display = "none";
 });
 
